@@ -1,0 +1,37 @@
+---
+title: "ckan_demo_analysis"
+author: "Yin Aphinyanaphongs"
+date: "4/10/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(readr)
+library(ggplot2)
+```
+
+## Download data
+
+This command goes to ckan and downloads some data.
+
+```{r download}
+system("wget http://ckalcdcdvm001.nyumc.org/dataset/9ec4a114-e4cb-43a2-b16b-639e3cdeaddb/resource/469f482b-cfe7-47f6-a323-678ced9d0828/download/children-bp-weight-triglyc.txt")
+```
+
+## Load data
+
+First, we load in the data.
+This is a simple dataset with children's blood pressure, weight, and triglycerides
+
+```{r cars, message=FALSE}
+data <- read_tsv("children-bp-weight-triglyc.txt")
+```
+
+## Do some analysis
+
+We will plot weight against triglycerides
+
+```{r pressure, echo=FALSE}
+qplot(x=weight,y=triglycerides, data=data, width=5)
+```
